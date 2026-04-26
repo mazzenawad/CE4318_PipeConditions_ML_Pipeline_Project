@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from sklearn.compose import ColumnTransformerm
+from sklearn.compose import ColumnTransformer
 from imblearn.over_sampling import SMOTE
 import os
 

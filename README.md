@@ -20,6 +20,8 @@ The project uses synthetic infrastructure data simulating real-world municipal e
 ```
 
 ## Repository Structure
+
+```text
 pipe-condition-predictor/
 │
 ├── data/
@@ -47,3 +49,4 @@ pipe-condition-predictor/
 ├── README.md
 ├── requirements.txt
 └── .gitignore
+```
