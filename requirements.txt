@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 pandas>=1.5
 numpy>=1.23
 scikit-learn>=1.2
@@ -5,4 +6,13 @@ xgboost>=1.7
 imbalanced-learn>=0.10
 matplotlib>=3.6
 seaborn>=0.12
+=======
+pandas>=1.5
+numpy>=1.23
+scikit-learn>=1.2
+xgboost>=1.7
+imbalanced-learn>=0.10
+matplotlib>=3.6
+seaborn>=0.12
+>>>>>>> 66eb328cfc9807d5b6576cfcf8ae52dffe6ef2c2
 joblib>=1.2
