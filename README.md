@@ -67,6 +67,9 @@ CE4318_PipeConditions_ML_Pipeline_Project/
 │   │   └── pipe_condition_class_synthetic.csv
 │   └── processed/
 │
+├── notebooks/                  # Original Jupyter notebooks for EDA and initial testing
+│   └── Notebook_Pipe_Conditions.ipynb
+│
 ├── src/
 │   ├── __init__.py
 │   ├── data_prep.py          # loading, EDA helpers, feature engineering
@@ -85,6 +88,7 @@ CE4318_PipeConditions_ML_Pipeline_Project/
 │   │   └── noise_robustness.png
 │   └── results/
 │       ├── classification_report.txt
+        ├── ordinal_evaluation_report.txt  # Added to track QWK and MAE
 │       └── bootstrap_metrics.csv
 │
 ├── README.md
