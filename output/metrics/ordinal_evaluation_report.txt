@@ -1,6 +1,6 @@
 --- Ordinal Evaluation Metrics ---
 
-Quadratic Weighted Kappa: 0.3492
-Mean Absolute Error: 0.8840
+Quadratic Weighted Kappa: 0.3797
+Mean Absolute Error: 0.8950
 
 Note: A lower MAE indicates the model's errors are mostly 'off-by-one'.

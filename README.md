@@ -88,7 +88,7 @@ CE4318_PipeConditions_ML_Pipeline_Project/
 │   │   └── noise_robustness.png
 │   └── results/
 │       ├── classification_report.txt
-        ├── ordinal_evaluation_report.txt  # Added to track QWK and MAE
+│       ├── ordinal_evaluation_report.txt  # Added to track QWK and MAE
 │       └── bootstrap_metrics.csv
 │
 ├── README.md

@@ -3,10 +3,16 @@ import joblib
 import os
 
 def train_model(X_train, y_train, random_seed=42):
+    # Initialize the model with the corrected keyword arguments
     model = xgb.XGBClassifier(
         objective='multi:softprob',
         eval_metric='mlogloss',
-        random_state=random_seed
+        random_state=random_seed,
+        colsample_bytree=0.8,
+        learning_rate=0.1,
+        max_depth=3,
+        n_estimators=300,
+        subsample=0.8
     )
     
     model.fit(X_train, y_train)
