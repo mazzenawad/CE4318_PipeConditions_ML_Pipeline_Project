@@ -8,7 +8,7 @@ from sklearn.metrics import f1_score
 from sklearn.utils import resample
 
 def evaluate_bootstrap_robustness(model, X_test, y_test, n_iterations=100, random_state=42):
-    print(f"Running Bootstrap Evaluation ({n_iterations} iterations)...")
+    print(f"Running Bootstrap Evaluation ({n_iterations} iterations)")
     np.random.seed(random_state)
     scores = []
     
@@ -36,7 +36,6 @@ def evaluate_bootstrap_robustness(model, X_test, y_test, n_iterations=100, rando
     return {'mean': mean_score, 'lower_ci': lower_bound, 'upper_ci': upper_bound, 'all_scores': scores}
 
 def evaluate_noise_robustness(model, X_test, y_test, numerical_features, noise_levels=[0.0, 0.05, 0.10, 0.20, 0.30]):
-    print(f"Running Noise Perturbation Check on features: {numerical_features}...")
     results = []
     
     for level in noise_levels:
@@ -89,7 +88,6 @@ def run_robustness_suite(data_path, model_path):
     evaluate_noise_robustness(model, X_test, y_test, numerical_features=features_to_perturb)
 
 if __name__ == "__main__":
-    # Update these paths to match your local directory structure
     DATA_FILE = 'pipe_condition_class_synthetic.csv'
     MODEL_FILE = 'best_xgb_model.joblib' 
     

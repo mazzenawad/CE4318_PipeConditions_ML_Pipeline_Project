@@ -1,4 +1,5 @@
 import os
+import pandas as pd
 from data_prep import load_and_preprocess_data
 from train import train_model, save_model
 from eval import evaluate_model
@@ -28,9 +29,15 @@ def main():
     plot_feature_importance(model, preprocessor, os.path.join(FIG_DIR, 'feature_importance.png'))
 
     # 5. Robustness Checks
-    numerical_cols = ['Age', 'Diameter', 'Slope', 'Depth', 'Length', 'Soil PH']
-    evaluate_bootstrap_robustness(model, X_test, y_test)
-    evaluate_noise_robustness(model, X_test, y_test)    
+    # Make sure to add 'import pandas as pd' at the very top of run_pipeline.py!
+
+    # 5. Robustness Checks
+    feature_names = preprocessor.get_feature_names_out()
+    X_test_df = pd.DataFrame(X_test, columns=feature_names)
+    X_test_df = pd.DataFrame(X_test, columns=feature_names)
+    features_to_perturb = ['num__Age', 'num__Diameter', 'num__Soil PH']
+    evaluate_bootstrap_robustness(model, X_test_df, y_test)
+    evaluate_noise_robustness(model, X_test_df, y_test, numerical_features=features_to_perturb) 
 
 if __name__ == '__main__':
     main()

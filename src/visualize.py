@@ -5,11 +5,10 @@ import xgboost as xgb
 import os
 
 def plot_confusion_matrix(y_test, predictions, output_path):
-    """Plots and saves a confusion matrix."""
     cm = confusion_matrix(y_test, predictions)
     plt.figure(figsize=(8, 6))
     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', 
-                xticklabels=[1,2,3,4,5], yticklabels=[1,2,3,4,5]) # Mapped back to 1-5
+                xticklabels=[1,2,3,4,5], yticklabels=[1,2,3,4,5])
     plt.title('Confusion Matrix: Pipe Condition Rating')
     plt.xlabel('Predicted Rating')
     plt.ylabel('Actual Rating')
@@ -19,7 +18,6 @@ def plot_confusion_matrix(y_test, predictions, output_path):
     plt.close()
 
 def plot_feature_importance(model, preprocessor, output_path):
-    """Extracts encoded feature names and plots XGBoost feature importance."""
     # Retrieve clean feature names from OneHotEncoder
     feature_names = preprocessor.get_feature_names_out()
     

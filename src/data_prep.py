@@ -10,8 +10,8 @@ def load_and_preprocess_data(raw_data_path, random_seed=42):
     df = pd.read_csv(raw_data_path)
     
     X = df.drop(columns=['Condition Rating'])
-    y = df['Condition Rating'] - 1 # Shift labels from 1-5 to 0-4 for XGBoost
-
+    y = df['Condition Rating'] - 1 
+    
     # Define feature groups based on data
     num_features = ['Age', 'Diameter', 'Slope', 'Depth', 'Length', 'Soil PH']
     cat_features = ['Material', 'Soil Type', 'Road Type']
