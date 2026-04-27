@@ -16,29 +16,45 @@ This project demonstrates an end-to-end ML workflow for civil infrastructure con
 6. export figures, metrics, and the serialized model to disk.
 
 ## Workflow diagram
+```mermaid
+graph TD
+    %% Define Styles
+    classDef data fill:#e1f5fe,stroke:#039be5,stroke-width:2px,color:#000
+    classDef process fill:#f3e5f5,stroke:#8e24aa,stroke-width:2px,color:#000
+    classDef model fill:#e8f5e9,stroke:#43a047,stroke-width:2px,color:#000
+    classDef eval fill:#fff3e0,stroke:#fb8c00,stroke-width:2px,color:#000
 
-```
-flowchart TD
-    A[Raw data
-`data/raw/pipe_condition_class_synthetic.csv`] --> B[EDA + feature engineering
-(`Age × Soil_PH` interaction)]
-    B --> C[Preprocessing inside ColumnTransformer
-• Skewed numerics: Median imputation + StandardScaler
-• Standard numerics: Mean imputation + StandardScaler
-• Categoricals: Most-frequent imputation + OneHotEncoder]
-    C --> D[Stratified train/test split]
-    D --> E[SMOTE applied on training fold only
-(via imblearn pipeline)]
-    E --> F[XGBoost classifier
-train + tune]
-    F --> G[Standard evaluation
-accuracy, macro-F1, classification report]
-    F --> H[Custom robustness suite
-• 100-iteration bootstrap with 95% CIs
-• Noise perturbation on numerical features]
-    G --> I[Outputs
-`output/figures`, `output/results`, `output/models`]
+    %% Nodes
+    A[Raw Data<br/>pipe_condition.csv]:::data
+    B[Feature Engineering<br/>Age_x_Soil_PH]:::process
+    C{Train/Test Split}:::process
+    
+    D[ColumnTransformer Preprocessing<br/>Median/Mean Imputation & Scaling<br/>OHE for Categoricals]:::process
+    
+    E[SMOTE Resampling<br/>Strictly on Training Data]:::process
+    F[XGBoost Regressor<br/>reg:squarederror]:::model
+    
+    G[Prediction Output]:::data
+    H[Regress-and-Round<br/>Round & Clip to 1-5 Scale]:::process
+    
+    I[Ordinal Evaluation<br/>QWK & Mean Absolute Error]:::eval
+    J[Robustness Suite<br/>Bootstrap CI & Noise Perturbation]:::eval
+
+    %% Flow
+    A --> B
+    B --> C
+    C -- Training Data --> D
+    C -- Test Data --> D
+    
+    D -- Processed Train --> E
+    E --> F
+    
+    D -- Processed Test --> F
+    F --> G
+    G --> H
+    
     H --> I
+    H --> J
 ```
 
 ## Repository structure
